@@ -17,3 +17,40 @@ public enum Planeta {
 
     private final double masaPlaneta;
     private final double radioPlaneta;
+
+    Planeta(double masa,double radio) {
+        this.masaPlaneta = masa;
+        this.radioPlaneta = radio;
+    }
+
+    public double getMasa() {
+        return masaPlaneta;
+    }
+
+    public double getRadio() {
+        return radioPlaneta;
+    }
+
+    public double gravedadSuperficial() {
+        return G * masaPlaneta / Math.pow(radioPlaneta, 2);
+    }
+
+     public double masaHumano(double pesoTierra) {
+        return pesoTierra / EARTH.gravedadSuperficial();
+    }
+       public double pesoSuperficie(double pesoTierra) {
+        return masaHumano(pesoTierra) * gravedadSuperficial();
+    }
+
+       public static EnumSet<Planeta> getPlanetasTerrestres() {
+        return EnumSet.range(MERCURY, MARS);
+    }
+
+    public static EnumSet<Planeta> getGigantesGaseosos() {
+        return EnumSet.range(JUPITER, SATURN);
+    }
+
+    public static EnumSet<Planeta> getGigantesHelados() {
+        return EnumSet.range(URANUS, NEPTUNE);
+    }
+}
